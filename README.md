@@ -1,4 +1,4 @@
-# Template MAnager
+# Template Manager
 
 Template Manager is website for managing templates
 

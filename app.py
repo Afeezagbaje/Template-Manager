@@ -28,11 +28,17 @@ jwt = JWTManager(app)
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=60)
 
+
 client = MongoClient(os.getenv("MONGO_URI"))
+print(f"\n________Client_______\n{client}\n")
 db = client[os.getenv("DB_NAME")]
 users_collection = db["users"]
 templates_collection = db["templates"]
 
+
+@app.route('/')
+def home():
+    return "Welcome to Template Manager"
 
 @app.route("/api/v1/auth/register", methods=["POST"])
 def register():

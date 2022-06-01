@@ -22,15 +22,12 @@ app = Flask(__name__, instance_relative_config=True)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-mongo = MongoClient(host="localhost", port=27017)
-db = mongo[os.environ.get("DB_NAME")]
-
 jwt = JWTManager(app)
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=60)
 
 
-client = MongoClient(os.getenv("MONGO_URI"))
+client = MongoClient(os.getenv('MONGO_URI'))
 db = client[os.getenv("DB_NAME")]
 users_collection = db["users"]
 templates_collection = db["templates"]

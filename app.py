@@ -30,7 +30,6 @@ app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=60)
 
 
 client = MongoClient(os.getenv("MONGO_URI"))
-print(f"\n________Client_______\n{client}\n")
 db = client[os.getenv("DB_NAME")]
 users_collection = db["users"]
 templates_collection = db["templates"]

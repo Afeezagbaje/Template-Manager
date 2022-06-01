@@ -1,5 +1,6 @@
 import os
 from datetime import timedelta
+from dotenv import load_dotenv
 
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
@@ -18,6 +19,7 @@ from bson.objectid import ObjectId
 from src.constants.http_status_codes import *
 
 
+load_dotenv()
 app = Flask(__name__, instance_relative_config=True)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -26,8 +28,7 @@ jwt = JWTManager(app)
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=60)
 
-
-client = MongoClient(os.getenv('MONGO_URI'))
+client = MongoClient(os.getenv("MONGO_URI"))
 db = client[os.getenv("DB_NAME")]
 users_collection = db["users"]
 templates_collection = db["templates"]
@@ -311,3 +312,7 @@ def delete_template(id):
             jsonify({"msg": "Error", "data": None, "error": "Something went wrong"}),
             HTTP_500_INTERNAL_SERVER_ERROR,
         )
+
+
+if __name__ == "__main__":
+    app.run()

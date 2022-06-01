@@ -10,6 +10,7 @@ Template Manager is website for managing templates
 - [Flask](https://flask.palletsprojects.com/): Development framework used for the application
 - [MongoDB](https://www.mongodb.com/): A NoSQL Database that serves it purpose
 - [Github Actions](https://docs.github.com/en/free-pro-team@latest/actions) : Continuous Integration and Deployment
+- [Heroku](https://www.heroku.com/): Best free hosting platform in the market
 
 ## How To Start App
 
